@@ -1,0 +1,5 @@
+.vagrant
+.DS_Store
+cscimetrics/metrics-env
+cscimetrics/metrics-root/metrics/__pycache__
+__pycache__
