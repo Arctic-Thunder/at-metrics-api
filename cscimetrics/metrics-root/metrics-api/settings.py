@@ -38,8 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'graphene_django',
     'metrics',
 ]
+
+GRAPHENE = {
+    'SCHEMA': 'metrics-api.schema.schema'
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
