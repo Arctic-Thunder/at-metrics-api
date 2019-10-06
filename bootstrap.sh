@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -ex
+set -e
 
 sudo apt-get update
 sudo apt-get install -y python3 python3-venv python3-pip
@@ -15,7 +15,7 @@ cd cscimetrics
 
 if [ ! -d metrics-env ]; then
     echo -  Creating new virtual environment - metrics-env
-    python3 -m venv metrics-env
+    python3 -m venv --copies metrics-env
 fi
 
 echo ". /vagrant/cscimetrics/metrics-env/bin/activate" > ~/.profile

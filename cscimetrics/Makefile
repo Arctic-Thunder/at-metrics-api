@@ -7,5 +7,5 @@ PORT = 8000
 run:
 	python manage.py runserver $(HOST):$(PORT)
 
-clean:
-
+clean env:
+	rm -rf metrics-env
