@@ -5,17 +5,8 @@ from django.db import models
 class Metric(models.Model):
     id = models.AutoField(primary_key=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-    name = models.CharField(max_length=120)
-    description = models.TextField()
-    type = models.ForeignKey('MetricType', on_delete='PROTECT')
+    name = models.TextField(max_length=20)
+    data = models.TextField()
 
     def __str__(self):
         return self.name + ' ' + str(self.timestamp)
-
-
-class MetricType(models.Model):
-    name = models.CharField(max_length=20, primary_key=True)
-    description = models.TextField()
-
-    def __str__(self):
-        return self.name
