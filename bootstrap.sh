@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-set -ex
+set -e
 
 sudo apt-get update
+sudo apt-get upgrade -y
 sudo apt-get install -y python3 python3-venv python3-pip
 
 # Prepare Django Environment
@@ -22,6 +23,7 @@ echo ". /vagrant/cscimetrics/metrics-env/bin/activate" > ~/.profile
 echo "cd /vagrant/cscimetrics" >> ~/.profile
 
 source metrics-env/bin/activate
-pip install -r requirements.txt
+pip install --upgrade
+pip install --requirement requirements.txt
 
 echo Setup Complete!
