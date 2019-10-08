@@ -4,6 +4,7 @@ set -e
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install -y python3 python3-venv python3-pip
+sudo apt-get install -y virtualenv
 
 # Prepare Django Environment
 cd /vagrant
@@ -16,7 +17,7 @@ cd cscimetrics
 
 if [ ! -d metrics-env ]; then
     echo -  Creating new virtual environment - metrics-env
-    python3 -m venv metrics-env
+    virtualenv -p /usr/bin/python3 metrics-env --always-copy
 fi
 
 echo ". /vagrant/cscimetrics/metrics-env/bin/activate" > ~/.profile
