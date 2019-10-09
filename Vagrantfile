@@ -12,7 +12,19 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "hashicorp/bionic64"
+  config.vm.define "django" do |django|
+    django.vm.box = "hashicorp/bionic64"
+    django.vm.hostname = "django"
+    django.vm.network "private_network", ip: "10.0.0.10"
+    django.vm.network "forwarded_port", guest: 8000, host: 80
+    django.vm.provision "shell", path: "djangobootstrap.sh", privileged: false
+  end
+
+  config.vm.define "mongodb" do |mongodb|
+    mongodb.vm.box = "hashicorp/bionic64"
+    mongodb.vm.hostname = "mongodb"
+    mongodb.vm.network "private_network", ip: "10.0.0.11"
+  end
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -23,7 +35,7 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # NOTE: This will enable public access to the opened port
-  config.vm.network "forwarded_port", guest: 8000, host: 8000
+  # config.vm.network "forwarded_port", guest: 8000, host: 8000
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine and only allow access
