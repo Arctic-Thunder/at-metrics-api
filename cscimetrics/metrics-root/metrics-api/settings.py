@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'metrics',
+    'metrics-app',
 ]
 
 REST_FRAMEWORK = {
@@ -84,8 +84,12 @@ WSGI_APPLICATION = 'metrics-api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'metrics',
+        'USER': 'metrics',
+        'PASSWORD': 'metrics',
+        'HOST': '10.0.0.11',
+        'PORT': '5432',
     }
 }
 
