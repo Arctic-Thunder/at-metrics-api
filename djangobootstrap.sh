@@ -6,7 +6,7 @@ VENV=metrics-env
 
 
 sudo apt-get update
-sudo apt-get install -y python3 virtualenv python3-pip
+sudo apt-get install -y python3 virtualenv python3-pip libpq-dev
 
 # Prepare Django Environment
 cd /vagrant
@@ -34,6 +34,10 @@ source $VENV/bin/activate
 
 if [ -e requirements.txt ]; then
     pip install -r requirements.txt
+
+    cd metrics-root
+    ./manage.py makemigrations
+    ./manage.py migrate
 else
     echo - Missing \"requirements.txt\". Please install requirements manually and execute \"pip freeze > requirements.txt\"
 fi

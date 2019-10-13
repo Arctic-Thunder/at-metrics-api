@@ -27,6 +27,10 @@ END
     GRANT ALL PRIVILEGES ON DATABASE csci_metrics TO metrics;
     \q
 __END__
+
+    sudo sed -i 's/^#listen_addresses = .*/listen_addresses = '\''*'\''/' /etc/postgresql/11/main/postgresql.conf
+    echo "host all all 0.0.0.0/0 md5" | sudo tee -a /etc/postgresql/11/main/pg_hba.conf
+    sudo service postgresql restart
     echo Database configured! 1>&2
 fi
 
