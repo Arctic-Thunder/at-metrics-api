@@ -36,6 +36,7 @@ if [ -e requirements.txt ]; then
     pip install -r requirements.txt
 
     cd metrics-root
+    tr -d '\r' < manage.py > manage.py
     ./manage.py makemigrations
     ./manage.py migrate
 else
