@@ -88,12 +88,21 @@ WSGI_APPLICATION = 'metrics-api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'csci_metrics',
-        'USER': 'metrics',
-        'PASSWORD': 'metrics',
-        'HOST': '10.0.0.11',
+        'NAME': 'arctic',
+        'USER': 'myadmin@arcticthunder1',
+        'PASSWORD': 'fbdkwls321!',
+        'HOST': 'arcticthunder1.postgres.database.azure.com',
         'PORT': '5432',
     }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'csci_metrics',
+    #     'USER': 'metrics',
+    #     'PASSWORD': 'metrics',
+    #     'HOST': '10.0.0.11',
+    #     'PORT': '5432',
+    # }
 }
 
 

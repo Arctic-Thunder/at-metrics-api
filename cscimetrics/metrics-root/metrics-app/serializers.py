@@ -16,7 +16,7 @@ class MetricSerializer(serializers.ModelSerializer):
     class Meta:
         model = Metric
         fields = '__all__'
-        read_only_fields = ['id', 'timestamp']
+        read_only_fields = ['id', 'timestamp', 'project_id']
 
 
 class UserSerializer(serializers.ModelSerializer):

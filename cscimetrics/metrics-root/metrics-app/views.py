@@ -32,6 +32,12 @@ class MetricViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         user = self.request.user
         return Metric.objects.filter(project_id__owner=user)
 
+    def perform_create(self, serializer):
+        id = self.request.path.split('/')
+        project = Project.objects.get(pk=id[3])
+        if project:
+            serializer.save(project_id=project)
+
 
 # class MetricDetail(NestedViewSetMixin,generics.RetrieveDestroyAPIView):
 #     serializer_class = MetricSerializer
