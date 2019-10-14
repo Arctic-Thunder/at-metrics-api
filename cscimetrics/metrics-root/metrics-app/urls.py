@@ -1,13 +1,25 @@
 from django.urls import path, include
-from.views import ProjectList, ProjectDetail, MetricList, MetricDetail, UserCreate
+# from.views import ProjectViewSet, ProjectDetail, MetricViewSet, MetricDetail, UserCreate
+from .views import ProjectViewSet, MetricViewSet, UserCreate
 from rest_framework.authtoken import views
+from rest_framework_extensions.routers import ExtendedSimpleRouter
+from rest_framework.routers import DefaultRouter
 
 app_name = "metrics"
 
+extRouter = ExtendedSimpleRouter()
+(
+    extRouter.register(r'projects', ProjectViewSet, basename='project')
+    .register(r'metrics', MetricViewSet, basename='projects-metric', parents_query_lookups=['project__metrics'])
+)
+
+defRouter = DefaultRouter()
+(
+    defRouter.register(r'new_user', UserCreate, basename='new-user')
+)
+
 urlpatterns = [
-    path('projects/', ProjectList.as_view()),
-    path('projects/<int:project_id>', ProjectDetail.as_view()),
-    path('projects/<int:project_id>/metric/<int:metric_id>', MetricDetail.as_view()),
-    path('users/', UserCreate.as_view(), name="user_create"),
-    path("login/", views.obtain_auth_token, name="login"),
+    path('', include(extRouter.urls)),
+    path('', include(defRouter.urls)),
+    path('login/', views.obtain_auth_token, name="login")
 ]

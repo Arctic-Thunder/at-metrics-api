@@ -1,31 +1,47 @@
-from rest_framework import generics
+from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework_extensions.mixins import NestedViewSetMixin
 
 from .models import Project, Metric
 from .serializers import ProjectSerializer, MetricSerializer, UserSerializer
 
 
-class ProjectList(generics.ListCreateAPIView):
-    queryset = Project.objects.all()
+class ProjectViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     serializer_class = ProjectSerializer
 
+    def get_queryset(self):
+        user = self.request.user
+        return Project.objects.filter(owner=user)
+    
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
-class ProjectDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Project.objects.all()
-    serializer_class = ProjectSerializer
+
+# class ProjectDetail(NestedViewSetMixin, generics.RetrieveUpdateDestroyAPIView):
+#     serializer_class = ProjectSerializer
+
+#     def get_queryset(self):
+#         user = self.request.user
+#         return Project.objects.filter(owner=user)
 
 
-class MetricList(generics.ListCreateAPIView):
-    queryset = Metric.objects.all()
+class MetricViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     serializer_class = MetricSerializer
 
+    def get_queryset(self):
+        user = self.request.user
+        return Metric.objects.filter(project_id__owner=user)
 
-class MetricDetail(generics.RetrieveDestroyAPIView):
-    queryset = Metric.objects.all()
-    serializer_class = MetricSerializer
+
+# class MetricDetail(NestedViewSetMixin,generics.RetrieveDestroyAPIView):
+#     serializer_class = MetricSerializer
+
+#     def get_queryset(self):
+#         user = self.request.user
+#         return Metric.objects.filter(project_id__owner=user)
 
 
-class UserCreate(generics.CreateAPIView):
+class UserCreate(viewsets.ModelViewSet):
     authentication_classes = ()
     permission_classes = ()
     serializer_class = UserSerializer
