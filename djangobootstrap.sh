@@ -2,7 +2,7 @@
 set -e
 
 # Installation Variables
-VENV=metrics-env
+VENV=~/metrics-env
 
 
 sudo apt-get update
@@ -43,7 +43,7 @@ else
 fi
 
 # Configure SSH Login Parameters
-echo ". /vagrant/cscimetrics/metrics-env/bin/activate" > ~/.profile
+echo ". $VENV/bin/activate" > ~/.profile
 echo "cd /vagrant/cscimetrics" >> ~/.profile
 
 echo Setup Complete!
