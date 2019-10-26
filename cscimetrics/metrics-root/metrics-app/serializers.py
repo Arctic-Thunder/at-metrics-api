@@ -2,20 +2,21 @@ from rest_framework import serializers
 
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
-from .models import Metric, MetricType
+from .models import Project, Metric
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = '__all__'
+        read_only_fields = ['id', 'created', 'modified']
 
 
 class MetricSerializer(serializers.ModelSerializer):
     class Meta:
         model = Metric
         fields = '__all__'
-        read_only_fields = ['id', 'timestamp']
-
-
-class MetricTypeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MetricType
-        fields = '__all__'
+        read_only_fields = ['id', 'timestamp', 'project_id']
 
 
 class UserSerializer(serializers.ModelSerializer):
