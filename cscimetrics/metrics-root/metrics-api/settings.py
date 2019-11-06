@@ -48,7 +48,13 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+ 
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+
+
 }
 
 MIDDLEWARE = [
@@ -86,23 +92,23 @@ WSGI_APPLICATION = 'metrics-api.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'arctic',
-        'USER': 'myadmin@arcticthunder1',
-        'PASSWORD': 'fbdkwls321!',
-        'HOST': 'arcticthunder1.postgres.database.azure.com',
-        'PORT': '5432',
-    }
-
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'csci_metrics',
-    #     'USER': 'metrics',
-    #     'PASSWORD': 'metrics',
-    #     'HOST': '10.0.0.11',
+    #     'NAME': 'arctic',
+    #     'USER': 'myadmin@arcticthunder1',
+    #     'PASSWORD': 'fbdkwls321!',
+    #     'HOST': 'arcticthunder1.postgres.database.azure.com',
     #     'PORT': '5432',
     # }
+
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'csci_metrics',
+        'USER': 'metrics',
+        'PASSWORD': 'metrics',
+        'HOST': '10.0.0.11',
+        'PORT': '5432',
+    }
 }
 
 
