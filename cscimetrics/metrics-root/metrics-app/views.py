@@ -30,7 +30,8 @@ class MetricViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        return Metric.objects.filter(project_id__owner=user)
+        id = self.request.path.split('/')
+        return Metric.objects.filter(project_id=path[3]).filter(project_id__owner=user)
 
     def perform_create(self, serializer):
         id = self.request.path.split('/')
