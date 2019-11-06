@@ -12,11 +12,6 @@ sudo apt-get install -y python3 virtualenv python3-pip libpq-dev
 cd /vagrant
 
 echo Initializing Django Environment
-if [ ! -d cscimetrics ]; then
-    mkdir cscimetrics
-fi
-cd cscimetrics
-
 # Configure Python Virtual Environment
 if [ ! -d $VENV ]; then
     echo - Creating new virtual environment - $VENV
@@ -36,7 +31,6 @@ if [ -e requirements.txt ]; then
     pip install -r requirements.txt
 
     cd metrics-root
-    tr -d '\r' < manage.py > manage.py
     ./manage.py makemigrations
     ./manage.py migrate
 else
@@ -45,6 +39,6 @@ fi
 
 # Configure SSH Login Parameters
 echo ". $VENV/bin/activate" > ~/.profile
-echo "cd /vagrant/cscimetrics" >> ~/.profile
+echo "cd /vagrant/metrics-root" >> ~/.profile
 
 echo Setup Complete!
