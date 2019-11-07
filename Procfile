@@ -1,1 +1,1 @@
-web: gunicorn at-metrics-api.wsgi
+web: gunicorn metrics-api.wsgi
