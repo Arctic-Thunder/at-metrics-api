@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import django_heroku
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -89,26 +90,7 @@ WSGI_APPLICATION = 'metrics-api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dfhnsciknvmko3',
-        'USER': 'jkykuhnsctetvj',
-        'PASSWORD': '836c09e617e45fb9d268dc48d3e151ba0db7615d31beb08fdfd55572b171afb1',
-        'HOST': 'ec2-174-129-253-42.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'csci_metrics',
-    #     'USER': 'metrics',
-    #     'PASSWORD': 'metrics',
-    #     'HOST': '10.0.0.11',
-    #     'PORT': '5432',
-    # }
-}
-
+DATABASES['default'] =  dj_database_url.config()
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
