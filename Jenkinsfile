@@ -1,9 +1,14 @@
 pipeline {
   agent any
   stages {
-    stage('Test') {
+    stage('Install Dependencies') {
       steps {
-        echo 'Begining Django Tests'
+        echo 'Installing Dependencies'
+        sh '''sudo apt update && sudo apt install python3 python3-pip virtualenv libpq-dev
+
+
+
+'''
       }
     }
 
