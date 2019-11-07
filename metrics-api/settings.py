@@ -92,10 +92,10 @@ WSGI_APPLICATION = 'metrics-api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'arctic',
-        'USER': 'myadmin@arcticthunder1',
-        'PASSWORD': 'fbdkwls321!',
-        'HOST': 'arcticthunder1.postgres.database.azure.com',
+        'NAME': 'dfhnsciknvmko3',
+        'USER': 'jkykuhnsctetvj',
+        'PASSWORD': '836c09e617e45fb9d268dc48d3e151ba0db7615d31beb08fdfd55572b171afb1',
+        'HOST': 'ec2-174-129-253-42.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 
