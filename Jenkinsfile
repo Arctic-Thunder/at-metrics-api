@@ -1,17 +1,10 @@
 pipeline {
   agent any
   stages {
-    stage('Install Dependencies') {
+    stage('Push to Heroku') {
       steps {
-        echo 'Installing Dependencies'
-        sh '''apt update 
-
-
-&& apt install python3 python3-pip virtualenv libpq-dev
-
-
-
-'''
+        echo 'Pushing to Heroku'
+        git(url: 'https://git.heroku.com/at-metrics-api-stage.git', branch: 'master')
       }
     }
 
