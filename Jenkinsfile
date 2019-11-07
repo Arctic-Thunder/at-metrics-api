@@ -4,7 +4,10 @@ pipeline {
     stage('Install Dependencies') {
       steps {
         echo 'Installing Dependencies'
-        sh '''sudo apt update && sudo apt install python3 python3-pip virtualenv libpq-dev
+        sh '''apt update 
+
+
+&& apt install python3 python3-pip virtualenv libpq-dev
 
 
 
