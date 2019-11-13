@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'metrics-app',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -51,14 +52,30 @@ REST_FRAMEWORK = {
     ]
 }
 
+CORS_ORIGIN_WHITELIST = [
+    "http://127.0.0.1:8080",
+    "http://localhost:8080",
+    "https://at-metrics.herokuapp.com",
+    "https://at-metrics-stage.herokuapp.com",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:8080",
+    "http://localhost:8080",
+    "https://at-metrics.herokuapp.com",
+    "https://at-metrics-stage.herokuapp.com",
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'metrics-api.urls'
@@ -86,23 +103,23 @@ WSGI_APPLICATION = 'metrics-api.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'arctic',
-        'USER': 'myadmin@arcticthunder1',
-        'PASSWORD': 'fbdkwls321!',
-        'HOST': 'arcticthunder1.postgres.database.azure.com',
-        'PORT': '5432',
-    }
-
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'csci_metrics',
-    #     'USER': 'metrics',
-    #     'PASSWORD': 'metrics',
-    #     'HOST': '10.0.0.11',
+    #     'NAME': 'arctic',
+    #     'USER': 'myadmin@arcticthunder1',
+    #     'PASSWORD': 'fbdkwls321!',
+    #     'HOST': 'arcticthunder1.postgres.database.azure.com',
     #     'PORT': '5432',
     # }
+
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'csci_metrics',
+        'USER': 'metrics',
+        'PASSWORD': 'metrics',
+        'HOST': '10.0.0.11',
+        'PORT': '5432',
+    }
 }
 
 
